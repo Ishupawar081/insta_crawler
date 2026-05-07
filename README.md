@@ -32,6 +32,60 @@ This project is designed for long-running crawling sessions with simple anti-det
 
 ---
 
+# System Architecture
+
+```text
+                    +-------------------+
+                    |   run_24h.py      |
+                    |-------------------|
+                    | Controls 24h loop |
+                    | Picks hashtags    |
+                    | Handles sleeping  |
+                    +---------+---------+
+                              |
+                              v
+                    +-------------------+
+                    |     main.py       |
+                    |-------------------|
+                    | Starts crawler    |
+                    | Launches browser  |
+                    | Extracts links    |
+                    +---------+---------+
+                              |
+                              v
+                    +-------------------+
+                    |   Playwright      |
+                    |-------------------|
+                    | Chromium Browser  |
+                    | Page Navigation   |
+                    | Dynamic Scrolling |
+                    +---------+---------+
+                              |
+                              v
+                    +-------------------+
+                    | Instagram Hashtag |
+                    |       Pages       |
+                    +---------+---------+
+                              |
+                              v
+                    +-------------------+
+                    | URL Extraction    |
+                    |-------------------|
+                    | /p/ posts         |
+                    | /reel/ reels      |
+                    | /tv/ videos       |
+                    +---------+---------+
+                              |
+                              v
+                    +-------------------+
+                    |   Data Storage    |
+                    |-------------------|
+                    | run_<id>_<tag>.txt
+                    | all_links.txt     |
+                    +-------------------+
+```
+
+---
 # Installation
 
 ## Clone Repository
